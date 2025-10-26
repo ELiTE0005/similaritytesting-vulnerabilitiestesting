@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 # Load the API key from config
 with open("config.json") as f:
     config = json.load(f)
