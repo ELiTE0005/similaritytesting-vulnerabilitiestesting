@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Analyzer",
+			"type": "shell",
+			"command": "C:/Users/biswa/OneDrive/Desktop/nftsimilaritytestingpart2/.venv/Scripts/python.exe",
+			"args": [
+				"main.py",
+				"--input",
+				"contracts.txt"
+			],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}
