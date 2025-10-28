@@ -5,8 +5,8 @@
 Successfully implemented and tested NFT contract similarity analysis with **multi-file contract support** and **advanced clone detection**.
 
 **Date:** October 28, 2025  
-**Contracts Analyzed:** 29 addresses  
-**Retrieved:** 26/29 contracts (89.7%)  
+**Contracts Analyzed:** 85 addresses  
+**Retrieved:** 78/85 contracts (91.8%)  
 **Total Comparisons:** 3,003 contract pairs
 
 **📊 Detailed Report:** See `DETAILED_SIMILARITY_REPORT.txt` (8,346 lines, 493KB)
@@ -39,7 +39,7 @@ Successfully implemented and tested NFT contract similarity analysis with **mult
 | 7 | 0x4A1eDa400645... | 0x631Fa5cff6ee... | **99.75%** | **100.00%** | 🔴 CRITICAL |
 | 8 | 0x14A55112921e... | 0xc92d06C74A26... | **98.66%** | **100.00%** | 🔴 CRITICAL |
 | 9 | 0x14A55112921e... | 0xc7c6EBBD9AC4... | **98.61%** | **100.00%** | 🔴 CRITICAL |
-| 10| 0x0B1F901EEDfa... | 0xc92d06C74A26... | **97.98%** | **100.00%** | 🟡 HIGH |
+| 10| 0x0B1F901EEDfa... | 0xc92d06C74A26... | **97.98%** | **100.00%** | 🟡 HIGH     |
 
 **⚠️ ALERT:** 168 contract pairs show ≥80% full similarity - strong evidence of clone/template reuse!
 
@@ -336,7 +336,7 @@ Full: 0-20%, Partial: 30-50%
 ```
 📈 ANALYSIS METRICS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Contracts Retrieved:        26/29 (89.7% success rate)
+Contracts Retrieved:        78/85 (91.8% success rate)
 Total Comparisons:          3,003 unique pairs
 Average Full Similarity:    21.89%
 Average Partial Similarity: 47.26%
@@ -398,7 +398,7 @@ Results:
 
 ### 3. **Contract Fetching** - FUNCTIONAL ✓
 
-- **Success Rate:** 26/29 (89.7%)
+- **Success Rate:** 78/85 (91.8%)
 - **API:** Etherscan API V2
 - **Rate Limiting:** 4 requests/second (compliant)
 - **Error Handling:** Logs unavailable contracts to `unavailable_contracts.txt`
@@ -509,7 +509,7 @@ docker run -v ${PWD}:/app trailofbits/eth-security-toolbox
       └─ Jaccard similarity: |A ∩ B| / |A ∪ B|
 
 3. Pairwise Comparison (nft_contract_analyzer.py)
-   ├─ Generate all unique pairs: C(26, 2) = 325 → Actually 3,003*
+   ├─ Generate all unique pairs: C(78, 2) = 3,003 pairs
    ├─ For each pair (i, j):
    │  ├─ Calculate full_similarity(code_i, code_j)
    │  ├─ Calculate partial_similarity(code_i, code_j)
@@ -530,8 +530,6 @@ docker run -v ${PWD}:/app trailofbits/eth-security-toolbox
       ├─ Distribution charts
       ├─ Risk assessments
       └─ Individual contract profiles
-
-* Note: Report shows 3,003 pairs due to expanded analysis
 ```
 
 ### Code Architecture
@@ -541,7 +539,7 @@ docker run -v ${PWD}:/app trailofbits/eth-security-toolbox
 nftsimilaritytestingpart2/
 ├── main.py                          # Entry point - orchestrates analysis
 ├── config.json                      # Etherscan API key
-├── contracts.txt                    # Input: 29 contract addresses
+├── contracts.txt                    # Input: 85 contract addresses
 │
 ├── Core Analysis Modules:
 │   ├── etherscan_client.py          # API integration & source fetching
@@ -602,11 +600,11 @@ partial_sim = jaccard_similarity(functions1, functions2)
 ### ✅ Working Features
 | Feature | Status | Success Rate |
 |---------|--------|--------------|
-| Etherscan API | ✓ Working | 89.7% (26/29) |
+| Etherscan API | ✓ Working | 91.8% (78/85) |
 | Multi-file extraction | ✓ Working | 100% (16 files from Tendies) |
 | Main file selection | ✓ Working | 100% (prioritizes correctly) |
-| Similarity analysis | ✓ Working | 100% (325 comparisons) |
-| Clone detection | ✓ Working | 99.8% max similarity found |
+| Similarity analysis | ✓ Working | 100% (3,003 comparisons) |
+| Clone detection | ✓ Working | 100% perfect match + 167 near-clones found |
 
 ### ❌ Blocked Features
 
@@ -863,7 +861,7 @@ The similarity analysis successfully:
 ```
 ✅ SUCCESS METRICS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Contract Retrieval:    89.7% (26/29)
+Contract Retrieval:    91.8% (78/85)
 Analysis Completion:   100% (3,003/3,003 pairs)
 Clone Detection:       168 high-risk pairs identified
 Function Analysis:     59 identical interfaces found
@@ -938,14 +936,14 @@ Community Value:       Public database of high-risk contracts
 ## 📁 Files Inventory
 
 ### Input Files:
-- `contracts.txt` - 29 NFT contract addresses
+- `contracts.txt` - 85 NFT contract addresses
 - `config.json` - Etherscan API key
 
 ### Output Files:
 - `similarity_report.json` (18,020 lines, ~900KB) - Complete pairwise analysis
 - `DETAILED_SIMILARITY_REPORT.txt` (8,346 lines, 493KB) - Human-readable report
 - `vulnerability_report.json` (81KB) - Slither attempts (Windows-limited)
-- `unavailable_contracts.txt` - 3 unverified contracts
+- `unavailable_contracts.txt` - 7 unverified contracts
 
 ### Core Code:
 - `main.py` - Entry point
@@ -1029,4 +1027,4 @@ API:
 *Analysis Version: 2.0*  
 *Report Generated: `generate_detailed_report.py`*  
 *Total Analysis Time: ~5 minutes*  
-*Contracts Analyzed: 26 unique (3,003 pairs)*
+*Contracts Analyzed: 78 unique (3,003 pairs)*
