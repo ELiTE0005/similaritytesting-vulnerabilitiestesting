@@ -3,6 +3,7 @@ sys.path.append('.')
 from slither_analyzer import SlitherAnalyzer
 import os
 import json
+from typing import Optional
 
 # Test with realistic Etherscan structure
 test_json = '''{{
@@ -15,22 +16,29 @@ test_json = '''{{
   }
 }}'''
 
-main_file, is_multi, tempdir = SlitherAnalyzer._extract_all_contracts(test_json)
+result = SlitherAnalyzer._extract_all_contracts(test_json)
+main_file: str
+is_multi: bool
+tempdir: Optional[str]
+main_file, is_multi, tempdir = result
 
 print(f"Main file selected: {main_file}")
 basename = os.path.basename(main_file)
 print(f"  → {basename}")
-print(f"\nAll extracted files:")
-for root, dirs, files in os.walk(tempdir):
-    for file in files:
-        filepath = os.path.join(root, file)
-        relative = os.path.relpath(filepath, tempdir)
-        is_main = filepath == main_file
-        marker = " ← SELECTED AS MAIN" if is_main else ""
-        print(f"  {relative}{marker}")
 
-# Cleanup
-import shutil
-shutil.rmtree(tempdir, ignore_errors=True)
+if tempdir:
+    print(f"\nAll extracted files:")
+    for root, dirs, files in os.walk(tempdir):
+        for file in files:
+            filepath = os.path.join(root, file)
+            relative = os.path.relpath(filepath, tempdir)
+            is_main = filepath == main_file
+            marker = " ← SELECTED AS MAIN" if is_main else ""
+            print(f"  {relative}{marker}")
 
-print(f"\n✓ Correctly selected '{basename}' (non-library file in contracts/ folder)")
+    # Cleanup
+    import shutil
+    shutil.rmtree(tempdir, ignore_errors=True)
+    print(f"\n✓ Correctly selected '{basename}' (non-library file in contracts/ folder)")
+else:
+    print(f"\n✓ Single file extraction (no temp directory created)")

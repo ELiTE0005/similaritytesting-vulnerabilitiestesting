@@ -1027,4 +1027,4 @@ API:
 *Analysis Version: 2.0*  
 *Report Generated: `generate_detailed_report.py`*  
 *Total Analysis Time: ~5 minutes*  
-*Contracts Analyzed: 78 unique (3,003 pairs)*
+*Contracts Analyzed: 78  (3,003 pairs)*
