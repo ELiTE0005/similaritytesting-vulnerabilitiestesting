@@ -4,7 +4,7 @@ NFT SMART CONTRACT SIMILARITY ANALYSIS - DETAILED REPORT
 
 Generated: October 28, 2025
 Total Contract Pairs Analyzed: 3003
-Total Unique Contracts: 26
+Total Unique Contracts: 78
 
 ====================================================================================================
 

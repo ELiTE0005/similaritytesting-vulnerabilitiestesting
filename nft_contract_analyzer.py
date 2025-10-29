@@ -2,16 +2,18 @@ import json
 import time
 from etherscan_client import EtherscanClient
 from code_similarity import CodeSimilarity
-from slither_analyzer import SlitherAnalyzer
+from mythril_analyzer import MythrilAnalyzer
 
 class NFTContractAnalyzer:
     def __init__(self, api_key):
         self.etherscan = EtherscanClient(api_key)
         self.unavailable = []
         self.contracts = {}
+        self.addresses = []  # Store addresses for direct bytecode analysis
 
     def fetch_and_analyze(self, addresses):
         total = len(addresses)
+        self.addresses = addresses  # Store for Mythril bytecode analysis
         for idx, addr in enumerate(addresses, 1):
             print(f"[{idx}/{total}] Fetching {addr}...", end=" ", flush=True)
             code = self.etherscan.get_contract_source(addr)
@@ -43,13 +45,51 @@ class NFTContractAnalyzer:
                 report[key] = {"contract1": a1, "contract2": a2, "full_similarity": full, "partial_similarity": partial}
         return report
 
-    def vulnerability_report(self):
+    def vulnerability_report(self, timeout_per_contract=300):
+        """
+        Run Mythril vulnerability analysis on all contracts.
+        Uses bytecode analysis for reliability (works even without source code).
+        
+        Args:
+            timeout_per_contract: Maximum seconds per contract analysis (default: 5 minutes)
+        """
         vulns = {}
-        total = len(self.contracts)
-        print(f"\nRunning Slither analysis on {total} contracts...")
-        for idx, (addr, code) in enumerate(self.contracts.items(), 1):
-            print(f"[{idx}/{total}] Analyzing {addr[:10]}...")
-            vulns[addr] = SlitherAnalyzer.analyze(code)
+        # Use all addresses (even those without source code)
+        all_addresses = self.addresses if self.addresses else list(self.contracts.keys())
+        total = len(all_addresses)
+        
+        print(f"\n{'='*70}")
+        print(f"Running Mythril vulnerability analysis on {total} contracts...")
+        print(f"Using bytecode analysis (works without source code)")
+        print(f"Timeout per contract: {timeout_per_contract}s (~{timeout_per_contract//60} minutes)")
+        print(f"{'='*70}\n")
+        
+        for idx, addr in enumerate(all_addresses, 1):
+            print(f"[{idx}/{total}] Analyzing {addr}...")
+            
+            # Use bytecode analysis (more reliable than source code)
+            result = MythrilAnalyzer.analyze_address(addr, timeout=timeout_per_contract)
+            vulns[addr] = result
+            
+            # Show quick summary
+            if result.get("success"):
+                issues = result.get("issue_count", 0)
+                severity = result.get("severity_breakdown", {})
+                high = severity.get("High", 0)
+                medium = severity.get("Medium", 0)
+                low = severity.get("Low", 0)
+                print(f"  ✓ Complete: {issues} issues (🔴{high} 🟡{medium} 🟢{low})")
+            else:
+                error = result.get("error", "Unknown error")[:50]
+                print(f"  ✗ Failed: {error}...")
+            
+            # Add small delay to avoid overwhelming the system
+            time.sleep(1)
+        
+        print(f"\n{'='*70}")
+        print(f"Vulnerability analysis complete!")
+        print(f"{'='*70}\n")
+        
         return vulns
 
     def log_unavailable(self, path="unavailable_contracts.txt"):
