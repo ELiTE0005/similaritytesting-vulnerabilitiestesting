@@ -42,7 +42,7 @@ def analyze_similarity_report():
     output.append("=" * 100)
     output.append(f"\nGenerated: October 28, 2025")
     output.append(f"Total Contract Pairs Analyzed: {len(entries)}")
-    output.append(f"Total Unique Contracts: 26")
+    output.append(f"Total Unique Contracts: 78")
     output.append("\n" + "=" * 100)
     
     # SECTION 1: METHODOLOGY
