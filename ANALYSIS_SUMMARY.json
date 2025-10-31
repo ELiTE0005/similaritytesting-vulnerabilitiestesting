@@ -1,0 +1,20 @@
+{
+  "analysis_date": "2025-10-31 21:32:07",
+  "total_contracts": 85,
+  "retrieved_contracts": 78,
+  "unavailable_contracts": 7,
+  "similarity_analysis": {
+    "total_pairs_analyzed": 3003,
+    "high_risk_clone_pairs": 142
+  },
+  "vulnerability_analysis": {
+    "successful_scans": 44,
+    "failed_scans": 34,
+    "total_issues": 1292,
+    "severity_breakdown": {
+      "High": 16,
+      "Medium": 57,
+      "Low": 165
+    }
+  }
+}

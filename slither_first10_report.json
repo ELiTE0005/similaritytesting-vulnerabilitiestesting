@@ -1,0 +1,478 @@
+{
+  "sample_size": 10,
+  "successful": 3,
+  "failed": 5,
+  "unavailable": 2,
+  "total_issues": 76,
+  "contracts": {
+    "0xA82F3a61F002F83Eba7D184c50bB2a8B359cA1cE": {
+      "success": false,
+      "address": "0xA82F3a61F002F83Eba7D184c50bB2a8B359cA1cE",
+      "error": "'solc --version' running\n'solc retrieved_contracts\\0xA82F3a61F002F83Eba7D184c50bB2a8B359cA1cE.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,C:\\Users\\biswa\\OneDrive\\Desktop\\nftsimilaritytestingpart2\\retrieved_contracts' running\nTraceback (most recent call last):\n  File \"C:\\Users\\biswa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\crytic_compile\\platform\\solc.py\", line 581, in _run_solc\n    ret: Dict = json.loads(stdout)\n       ",
+      "issues": [],
+      "issue_count": 0
+    },
+    "0x40D1587cB0BD9E2BCF7ab16c857D9A9FD881d445": {
+      "success": false,
+      "address": "0x40D1587cB0BD9E2BCF7ab16c857D9A9FD881d445",
+      "error": "'solc --version' running\n'solc retrieved_contracts\\0x40D1587cB0BD9E2BCF7ab16c857D9A9FD881d445.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,C:\\Users\\biswa\\OneDrive\\Desktop\\nftsimilaritytestingpart2\\retrieved_contracts' running\nTraceback (most recent call last):\n  File \"C:\\Users\\biswa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\crytic_compile\\platform\\solc.py\", line 581, in _run_solc\n    ret: Dict = json.loads(stdout)\n       ",
+      "issues": [],
+      "issue_count": 0
+    },
+    "0x8f496D935A356077fAA40417881826939bCD5632": {
+      "success": false,
+      "address": "0x8f496D935A356077fAA40417881826939bCD5632",
+      "error": "'solc --version' running\n'solc retrieved_contracts\\0x8f496D935A356077fAA40417881826939bCD5632.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,C:\\Users\\biswa\\OneDrive\\Desktop\\nftsimilaritytestingpart2\\retrieved_contracts' running\nTraceback (most recent call last):\n  File \"C:\\Users\\biswa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\crytic_compile\\platform\\solc.py\", line 581, in _run_solc\n    ret: Dict = json.loads(stdout)\n       ",
+      "issues": [],
+      "issue_count": 0
+    },
+    "0x4E3eB34950f1246ACFFCF79DDF9E4435fc785dbE": {
+      "success": false,
+      "error": "Source code not available",
+      "issues": [],
+      "issue_count": 0
+    },
+    "0x652b67d9C28055a18DC07163cC7d7aCb0378BDEf": {
+      "success": false,
+      "error": "Source code not available",
+      "issues": [],
+      "issue_count": 0
+    },
+    "0x031920cc2D9F5c10B444FD44009cd64F829E7be2": {
+      "success": false,
+      "address": "0x031920cc2D9F5c10B444FD44009cd64F829E7be2",
+      "error": "'solc --version' running\n'solc retrieved_contracts\\0x031920cc2D9F5c10B444FD44009cd64F829E7be2.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,C:\\Users\\biswa\\OneDrive\\Desktop\\nftsimilaritytestingpart2\\retrieved_contracts' running\nTraceback (most recent call last):\n  File \"C:\\Users\\biswa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\crytic_compile\\platform\\solc.py\", line 581, in _run_solc\n    ret: Dict = json.loads(stdout)\n       ",
+      "issues": [],
+      "issue_count": 0
+    },
+    "0xd153f0014db6d1F339c6340d2C9F59214355D9d7": {
+      "success": true,
+      "address": "0xd153f0014db6d1F339c6340d2C9F59214355D9d7",
+      "issues": [
+        {
+          "severity": "Medium",
+          "type": "reentrancy-no-eth",
+          "description": "Reentrancy in CryptoHobos.mintReservedHoboTo(address,uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3261-3279):\n\tExternal calls:\n\t- _mintHobos(to,count) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3275)\n\t\t- retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1911-1931)\n\tState variables written after the call(s):\n\t- reservedTokensLeft -= count (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3277)\n\tCryptoHobos.reservedTokensLeft (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3149) can be used in cross function reentrancies:\n\t- CryptoHobos.mintReservedHoboTo(address,uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3261-3279)\n\t- CryptoHobos.reduceSupply(uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3369-3375)\n\t- CryptoHobos.reservedTokensLeft (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3149)\n"
+        },
+        {
+          "severity": "Medium",
+          "type": "reentrancy-no-eth",
+          "description": "Reentrancy in CryptoHobos._mintHobos(address,uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3213-3227):\n\tExternal calls:\n\t- _safeMint(to,_lastTokenId) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3221)\n\t\t- retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1911-1931)\n\tState variables written after the call(s):\n\t- lastTokenId = _lastTokenId (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3225)\n\tCryptoHobos.lastTokenId (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3147) can be used in cross function reentrancies:\n\t- CryptoHobos._mintHobos(address,uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3213-3227)\n\t- CryptoHobos.lastTokenId (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3147)\n\t- CryptoHobos.reduceSupply(uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3369-3375)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "shadowing-local",
+          "description": "CryptoHobos.tokensOfOwner(address)._owner (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3231) shadows:\n\t- Ownable._owner (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2413) (state variable)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "calls-loop",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1897-1939) has external calls inside a loop: retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1911-1931)\n\tCalls stack containing the loop:\n\t\tCryptoHobos.mintReservedHoboTo(address,uint256)\n\t\tCryptoHobos._mintHobos(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "calls-loop",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1897-1939) has external calls inside a loop: retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1911-1931)\n\tCalls stack containing the loop:\n\t\tCryptoHobos.mintHobo(uint256)\n\t\tCryptoHobos._mintHobos(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1897-1939) uses assembly\n\t- INLINE ASM (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1923-1927)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "Address.verifyCallResult(bool,bytes,string) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#859-899) uses assembly\n\t- INLINE ASM (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#883-889)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "Address.isContract(address) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#521-541) uses assembly\n\t- INLINE ASM (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#533-537)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "boolean-equal",
+          "description": "CryptoHobos.pause() (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3305-3311) compares to a boolean constant:\n\t-require(bool)(hasStarted == true) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3307)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "boolean-equal",
+          "description": "CryptoHobos.mintHobo(uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3287-3303) compares to a boolean constant:\n\t-require(bool,string)(hasStarted == true && count > 0 && count <= MAX_MINTING_TOKENS_ON_TRANSACTION && totalSupply().add(count) <= maxTokens.sub(reservedTokensLeft) && msg.value >= currentTokenPrice.mul(count),Mint is impossible now) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3289-3299)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "boolean-equal",
+          "description": "CryptoHobos.play() (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3315-3321) compares to a boolean constant:\n\t-require(bool)(hasStarted == false) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3317)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "pragma",
+          "description": "2 different versions of Solidity are used:\n\t- Version constraint ^0.8.0 is used by:\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#15)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#71)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#359)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#419)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#475)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#915)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#969)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1109)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1169)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1995)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2055)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2383)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2529)\n\t\t-^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2661)\n\t- Version constraint ^0.8.7 is used by:\n\t\t-^0.8.7 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3119)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "ERC721._burn(uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1767-1791) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "Context._msgData() (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#949-953) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "ERC721._baseURI() (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1367-1371) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "solc-version",
+          "description": "Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#15)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#71)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#359)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#419)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#475)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#915)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#969)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1109)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1169)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1995)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2055)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2383)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2529)\n\t- ^0.8.0 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#2661)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "solc-version",
+          "description": "Version constraint ^0.8.7 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- VerbatimInvalidDeduplication\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables.\nIt is used by:\n\t- ^0.8.7 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3119)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.sendValue(address,uint256) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#577-587):\n\t- (success,None) = recipient.call{value: amount}() (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#583)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#713-735):\n\t- (success,returndata) = target.call{value: value}(data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#731)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionDelegateCall(address,bytes,string) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#825-843):\n\t- (success,returndata) = target.delegatecall(data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#839)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionStaticCall(address,bytes,string) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#771-789):\n\t- (success,returndata) = target.staticcall(data) (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#785)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Parameter ERC721.safeTransferFrom(address,address,uint256,bytes)._data (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#1521) is not in mixedCase\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Parameter CryptoHobos.tokensOfOwner(address)._owner (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3231) is not in mixedCase\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "too-many-digits",
+          "description": "CryptoHobos.slitherConstructorVariables() (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3133-3378) uses literals with too many digits:\n\t- currentTokenPrice = 49000000000000000 (retrieved_contracts/0xd153f0014db6d1F339c6340d2C9F59214355D9d7.sol#3151)\n"
+        }
+      ],
+      "issue_count": 24,
+      "severity_breakdown": {
+        "High": 0,
+        "Medium": 2,
+        "Low": 3,
+        "Informational": 19,
+        "Optimization": 0
+      }
+    },
+    "0x14A55112921ecAC6C3e062454C713938C7902b4d": {
+      "success": true,
+      "address": "0x14A55112921ecAC6C3e062454C713938C7902b4d",
+      "issues": [
+        {
+          "severity": "Medium",
+          "type": "reentrancy-no-eth",
+          "description": "Reentrancy in AcidApesCandySyndicateTest.forge(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2531-2551):\n\tExternal calls:\n\t- _safeMint(to,_tokenCounter) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2543)\n\t\t- retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2017-2037)\n\tState variables written after the call(s):\n\t- tokenCounter = _tokenCounter (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2549)\n\tAcidApesCandySyndicateTest.tokenCounter (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2451) can be used in cross function reentrancies:\n\t- AcidApesCandySyndicateTest.forge(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2531-2551)\n\t- AcidApesCandySyndicateTest.mint(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2489-2515)\n"
+        },
+        {
+          "severity": "Medium",
+          "type": "reentrancy-no-eth",
+          "description": "Reentrancy in AcidApesCandySyndicateTest.mint(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2489-2515):\n\tExternal calls:\n\t- _safeMint(to,_tokenCounter) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2505)\n\t\t- retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2017-2037)\n\tState variables written after the call(s):\n\t- tokenCounter = _tokenCounter (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2511)\n\tAcidApesCandySyndicateTest.tokenCounter (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2451) can be used in cross function reentrancies:\n\t- AcidApesCandySyndicateTest.forge(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2531-2551)\n\t- AcidApesCandySyndicateTest.mint(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2489-2515)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "calls-loop",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2003-2045) has external calls inside a loop: retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2017-2037)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "calls-loop",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2003-2045) has external calls inside a loop: retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2017-2037)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "Address.isContract(address) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#781-801) uses assembly\n\t- INLINE ASM (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#793-797)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "Address.verifyCallResult(bool,bytes,string) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1119-1159) uses assembly\n\t- INLINE ASM (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1143-1149)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2003-2045) uses assembly\n\t- INLINE ASM (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2029-2033)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "pragma",
+          "description": "2 different versions of Solidity are used:\n\t- Version constraint ^0.8.0 is used by:\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#9)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#57)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#103)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#385)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#439)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#493)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#547)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#685)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#735)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1169)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1303)\n\t\t-^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2095)\n\t- Version constraint ^0.8.2 is used by:\n\t\t-^0.8.2 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2437)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2369-2405) has costly operations inside a loop:\n\t- delete _allTokensIndex[tokenId] (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2401)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tAcidApesCandySyndicateTest._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2369-2405) has costly operations inside a loop:\n\t- delete _allTokensIndex[tokenId] (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2401)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tAcidApesCandySyndicateTest._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromOwnerEnumeration(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2319-2355) has costly operations inside a loop:\n\t- delete _ownedTokensIndex[tokenId] (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2351)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tAcidApesCandySyndicateTest._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromOwnerEnumeration(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2319-2355) has costly operations inside a loop:\n\t- delete _ownedTokensIndex[tokenId] (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2351)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tAcidApesCandySyndicateTest._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2369-2405) has costly operations inside a loop:\n\t- _allTokens.pop() (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2403)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tAcidApesCandySyndicateTest._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2369-2405) has costly operations inside a loop:\n\t- _allTokens.pop() (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2403)\n\tCalls stack containing the loop:\n\t\tAcidApesCandySyndicateTest.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tAcidApesCandySyndicateTest._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "ERC721._burn(uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1873-1897) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "Context._msgData() (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#91-95) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "ERC721._baseURI() (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1485-1489) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "solc-version",
+          "description": "Version constraint ^0.8.2 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- ^0.8.2 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2437)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "solc-version",
+          "description": "Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#9)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#57)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#103)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#385)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#439)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#493)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#547)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#685)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#735)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1169)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1303)\n\t- ^0.8.0 (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2095)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionStaticCall(address,bytes,string) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1031-1049):\n\t- (success,returndata) = target.staticcall(data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1045)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#973-995):\n\t- (success,returndata) = target.call{value: value}(data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#991)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionDelegateCall(address,bytes,string) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1085-1103):\n\t- (success,returndata) = target.delegatecall(data) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1099)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.sendValue(address,uint256) (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#837-847):\n\t- (success,None) = recipient.call{value: amount}() (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#843)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Parameter AcidApesCandySyndicateTest.setURI(string)._URI (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2473) is not in mixedCase\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Parameter ERC721.safeTransferFrom(address,address,uint256,bytes)._data (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#1633) is not in mixedCase\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Variable AcidApesCandySyndicateTest.URI (retrieved_contracts/0x14A55112921ecAC6C3e062454C713938C7902b4d.sol#2457) is not in mixedCase\n"
+        }
+      ],
+      "issue_count": 26,
+      "severity_breakdown": {
+        "High": 0,
+        "Medium": 2,
+        "Low": 2,
+        "Informational": 22,
+        "Optimization": 0
+      }
+    },
+    "0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0": {
+      "success": true,
+      "address": "0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0",
+      "issues": [
+        {
+          "severity": "Medium",
+          "type": "reentrancy-no-eth",
+          "description": "Reentrancy in SaconiHolmovimiento.mint(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2475-2501):\n\tExternal calls:\n\t- _safeMint(to,_tokenCounter) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2493)\n\t\t- retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2017-2037)\n\tState variables written after the call(s):\n\t- tokenCounter = _tokenCounter (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2499)\n\tSaconiHolmovimiento.tokenCounter (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2437) can be used in cross function reentrancies:\n\t- SaconiHolmovimiento.forge(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2515-2537)\n\t- SaconiHolmovimiento.mint(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2475-2501)\n"
+        },
+        {
+          "severity": "Medium",
+          "type": "reentrancy-no-eth",
+          "description": "Reentrancy in SaconiHolmovimiento.forge(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2515-2537):\n\tExternal calls:\n\t- _safeMint(to,_tokenCounter) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2529)\n\t\t- retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2017-2037)\n\tState variables written after the call(s):\n\t- tokenCounter = _tokenCounter (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2535)\n\tSaconiHolmovimiento.tokenCounter (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2437) can be used in cross function reentrancies:\n\t- SaconiHolmovimiento.forge(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2515-2537)\n\t- SaconiHolmovimiento.mint(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2475-2501)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "calls-loop",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2003-2045) has external calls inside a loop: retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2017-2037)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n"
+        },
+        {
+          "severity": "Low",
+          "type": "calls-loop",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2003-2045) has external calls inside a loop: retval = IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,_data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2017-2037)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "Address.verifyCallResult(bool,bytes,string) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1119-1159) uses assembly\n\t- INLINE ASM (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1143-1149)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "Address.isContract(address) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#781-801) uses assembly\n\t- INLINE ASM (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#793-797)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "assembly",
+          "description": "ERC721._checkOnERC721Received(address,address,uint256,bytes) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2003-2045) uses assembly\n\t- INLINE ASM (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2029-2033)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "pragma",
+          "description": "2 different versions of Solidity are used:\n\t- Version constraint ^0.8.0 is used by:\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#9)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#57)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#103)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#385)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#439)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#493)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#547)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#685)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#735)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1169)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1303)\n\t\t-^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2095)\n\t- Version constraint ^0.8.2 is used by:\n\t\t-^0.8.2 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2427)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2369-2405) has costly operations inside a loop:\n\t- delete _allTokensIndex[tokenId] (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2401)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tSaconiHolmovimiento._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromOwnerEnumeration(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2319-2355) has costly operations inside a loop:\n\t- delete _ownedTokensIndex[tokenId] (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2351)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tSaconiHolmovimiento._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2369-2405) has costly operations inside a loop:\n\t- delete _allTokensIndex[tokenId] (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2401)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tSaconiHolmovimiento._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2369-2405) has costly operations inside a loop:\n\t- _allTokens.pop() (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2403)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tSaconiHolmovimiento._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromAllTokensEnumeration(uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2369-2405) has costly operations inside a loop:\n\t- _allTokens.pop() (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2403)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.forge(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tSaconiHolmovimiento._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "costly-loop",
+          "description": "ERC721Enumerable._removeTokenFromOwnerEnumeration(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2319-2355) has costly operations inside a loop:\n\t- delete _ownedTokensIndex[tokenId] (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2351)\n\tCalls stack containing the loop:\n\t\tSaconiHolmovimiento.mint(address,uint256)\n\t\tERC721._safeMint(address,uint256)\n\t\tERC721._safeMint(address,uint256,bytes)\n\t\tERC721._mint(address,uint256)\n\t\tSaconiHolmovimiento._beforeTokenTransfer(address,address,uint256)\n\t\tERC721Enumerable._beforeTokenTransfer(address,address,uint256)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "ERC721._burn(uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1873-1897) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "Context._msgData() (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#91-95) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "dead-code",
+          "description": "ERC721._baseURI() (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1485-1489) is never used and should be removed\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "solc-version",
+          "description": "Version constraint ^0.8.0 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#9)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#57)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#103)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#385)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#439)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#493)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#547)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#685)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#735)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1169)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1303)\n\t- ^0.8.0 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2095)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "solc-version",
+          "description": "Version constraint ^0.8.2 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess\n\t- AbiReencodingHeadOverflowWithStaticArrayCleanup\n\t- DirtyBytesArrayToStorage\n\t- DataLocationChangeInInternalOverride\n\t- NestedCalldataArrayAbiReencodingSizeValidation\n\t- SignedImmutables\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching.\nIt is used by:\n\t- ^0.8.2 (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2427)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionStaticCall(address,bytes,string) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1031-1049):\n\t- (success,returndata) = target.staticcall(data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1045)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.sendValue(address,uint256) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#837-847):\n\t- (success,None) = recipient.call{value: amount}() (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#843)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#973-995):\n\t- (success,returndata) = target.call{value: value}(data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#991)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "low-level-calls",
+          "description": "Low level call in Address.functionDelegateCall(address,bytes,string) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1085-1103):\n\t- (success,returndata) = target.delegatecall(data) (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1099)\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Parameter SaconiHolmovimiento.setURI(string)._URI (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2459) is not in mixedCase\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Variable SaconiHolmovimiento.URI (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#2443) is not in mixedCase\n"
+        },
+        {
+          "severity": "Informational",
+          "type": "naming-convention",
+          "description": "Parameter ERC721.safeTransferFrom(address,address,uint256,bytes)._data (retrieved_contracts/0x0B1F901EEDfa11E7cf65efeB566EEffb6D38fbc0.sol#1633) is not in mixedCase\n"
+        }
+      ],
+      "issue_count": 26,
+      "severity_breakdown": {
+        "High": 0,
+        "Medium": 2,
+        "Low": 2,
+        "Informational": 22,
+        "Optimization": 0
+      }
+    },
+    "0x7d5773e8FEE4bc9B679c1EB51b2597984c007682": {
+      "success": false,
+      "address": "0x7d5773e8FEE4bc9B679c1EB51b2597984c007682",
+      "error": "'solc --version' running\n'solc retrieved_contracts\\0x7d5773e8FEE4bc9B679c1EB51b2597984c007682.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,C:\\Users\\biswa\\OneDrive\\Desktop\\nftsimilaritytestingpart2\\retrieved_contracts' running\nTraceback (most recent call last):\n  File \"C:\\Users\\biswa\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\crytic_compile\\platform\\solc.py\", line 581, in _run_solc\n    ret: Dict = json.loads(stdout)\n       ",
+      "issues": [],
+      "issue_count": 0
+    }
+  }
+}
