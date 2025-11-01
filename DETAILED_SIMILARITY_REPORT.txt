@@ -278,6 +278,11 @@ SECTION 3: TOP SIMILARITY PAIRS (DETAILED)
     Partial Similarity: 95.65%
     ⚠️  ALERT: Near-identical contracts - potential clone/rug pull template!
 
+
+
+
+
+
 3.2 TOP 20 PARTIAL SIMILARITY PAIRS
 ----------------------------------------------------------------------------------------------------
 
@@ -421,9 +426,14 @@ SECTION 3: TOP SIMILARITY PAIRS (DETAILED)
     Full Similarity:    99.80%
     ✓ Same function interface - likely same contract type
 
+
+
+
 ====================================================================================================
 SECTION 4: HIGH-RISK FINDINGS & CLONE DETECTION
 ====================================================================================================
+
+
 
 4.1 CRITICAL: NEAR-IDENTICAL CONTRACTS (≥95% Full Similarity)
 ----------------------------------------------------------------------------------------------------
@@ -1136,6 +1146,7 @@ SECTION 4: HIGH-RISK FINDINGS & CLONE DETECTION
     Similarity: 99.89% (full), 100.00% (partial)
     Risk Level: CRITICAL - Investigate for rug pull templates
 
+
 4.2 HIGH RISK: VERY SIMILAR CONTRACTS (80-95% Full Similarity)
 ----------------------------------------------------------------------------------------------------
 
@@ -1439,9 +1450,11 @@ SECTION 4: HIGH-RISK FINDINGS & CLONE DETECTION
     Similarity: 87.23% (full), 98.33% (partial)
     Risk Level: HIGH - Likely forked or template-based
 
+
 ====================================================================================================
 SECTION 5: COMPLETE COMPARISON MATRIX
 ====================================================================================================
+
 
 All 325 contract pairs sorted by full similarity (highest to lowest):
 
